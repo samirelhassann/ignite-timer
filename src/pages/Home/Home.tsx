@@ -7,7 +7,7 @@ import {
   CountDownContainer,
   FormContainer,
   HomeContainer,
-  MinutesAmountInout,
+  MinutesAmountInput,
   Separator,
   TaskInput,
 } from "./Home.styles";
@@ -21,7 +21,13 @@ const Home = () => {
           <TaskInput id="task" placeholder="Give a name for your task" />
 
           <label htmlFor="during">during</label>
-          <MinutesAmountInout type="number" id="during" placeholder="00" />
+          <MinutesAmountInput
+            type="number"
+            id="during"
+            placeholder="00"
+            step={5}
+            min={5}
+          />
 
           <span>minutes</span>
         </FormContainer>
