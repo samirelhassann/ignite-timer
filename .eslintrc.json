@@ -43,11 +43,11 @@
                 "groups": [
                     "/^react/",
                     "module",
+                    "/^@shared/",
                     "/css/",
                     "/style/",
                     "/assets/",
                     "/^~/",
-                    "/^@shared/",
                     "/components/",
                     [
                         "parent",
