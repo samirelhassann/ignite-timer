@@ -7,7 +7,8 @@ import {
   TaskInput,
 } from "./NewCycleForm.styles";
 
-import { CyclesContext } from "../../Home";
+import { CyclesContext } from "../../../../contexts/CyclesContexts";
+
 
 const NewCycleForm = () => {
   const { activeCycleId } = useContext(CyclesContext);

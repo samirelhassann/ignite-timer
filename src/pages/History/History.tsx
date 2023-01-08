@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
+
+import { formatDistanceToNow } from "date-fns/esm";
 
 import { HistoryContainer, HistoryList, Status } from "./History.styles";
 
+import { CyclesContext } from "../../contexts/CyclesContexts";
+
 const History = () => {
+  const { cycles } = useContext(CyclesContext);
+
+  const sortedCycles = cycles
+    .sort((a, b) => {
+      return new Date(a.startDate).getTime() - new Date(b.startDate).getTime();
+    })
+    .reverse();
+
   return (
     <HistoryContainer>
       <h1>My History</h1>
+
       <HistoryList>
         <table>
           <thead>
@@ -17,150 +30,32 @@ const History = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Task name</td>
-              <td>20 minutes</td>
-              <td>2 months ago</td>
-              <td>
-                <Status statusColor="yellow">Completed</Status>
-              </td>
-            </tr>
-            <tr>
-              <td>Task name</td>
-              <td>20 minutes</td>
-              <td>2 months ago</td>
-              <td>
-                <Status statusColor="red">Completed</Status>
-              </td>
-            </tr>
-            <tr>
-              <td>Task name</td>
-              <td>20 minutes</td>
-              <td>2 months ago</td>
-              <td>
-                <Status statusColor="red">Completed</Status>
-              </td>
-            </tr>
-            <tr>
-              <td>Task name</td>
-              <td>20 minutes</td>
-              <td>2 months ago</td>
-              <td>
-                <Status statusColor="red">Completed</Status>
-              </td>
-            </tr>
-            <tr>
-              <td>Task name</td>
-              <td>20 minutes</td>
-              <td>2 months ago</td>
-              <td>
-                <Status statusColor="red">Completed</Status>
-              </td>
-            </tr>
-            <tr>
-              <td>Task name</td>
-              <td>20 minutes</td>
-              <td>2 months ago</td>
-              <td>
-                <Status statusColor="red">Completed</Status>
-              </td>
-            </tr>
-            <tr>
-              <td>Task name</td>
-              <td>20 minutes</td>
-              <td>2 months ago</td>
-              <td>
-                <Status statusColor="red">Completed</Status>
-              </td>
-            </tr>
-            <tr>
-              <td>Task name</td>
-              <td>20 minutes</td>
-              <td>2 months ago</td>
-              <td>
-                <Status statusColor="red">Completed</Status>
-              </td>
-            </tr>
-            <tr>
-              <td>Task name</td>
-              <td>20 minutes</td>
-              <td>2 months ago</td>
-              <td>
-                <Status statusColor="red">Completed</Status>
-              </td>
-            </tr>
-            <tr>
-              <td>Task name</td>
-              <td>20 minutes</td>
-              <td>2 months ago</td>
-              <td>
-                <Status statusColor="red">Completed</Status>
-              </td>
-            </tr>
-            <tr>
-              <td>Task name</td>
-              <td>20 minutes</td>
-              <td>2 months ago</td>
-              <td>
-                <Status statusColor="red">Completed</Status>
-              </td>
-            </tr>
-            <tr>
-              <td>Task name</td>
-              <td>20 minutes</td>
-              <td>2 months ago</td>
-              <td>
-                <Status statusColor="red">Completed</Status>
-              </td>
-            </tr>
-            <tr>
-              <td>Task name</td>
-              <td>20 minutes</td>
-              <td>2 months ago</td>
-              <td>
-                <Status statusColor="red">Completed</Status>
-              </td>
-            </tr>
-            <tr>
-              <td>Task name</td>
-              <td>20 minutes</td>
-              <td>2 months ago</td>
-              <td>
-                <Status statusColor="red">Completed</Status>
-              </td>
-            </tr>
-            <tr>
-              <td>Task name</td>
-              <td>20 minutes</td>
-              <td>2 months ago</td>
-              <td>
-                <Status statusColor="red">Completed</Status>
-              </td>
-            </tr>
-            <tr>
-              <td>Task name</td>
-              <td>20 minutes</td>
-              <td>2 months ago</td>
-              <td>
-                <Status statusColor="red">Completed</Status>
-              </td>
-            </tr>
-            <tr>
-              <td>Task name</td>
-              <td>20 minutes</td>
-              <td>2 months ago</td>
-              <td>
-                <Status statusColor="red">Completed</Status>
-              </td>
-            </tr>
-            <tr>
-              <td>Task name</td>
-              <td>20 minutes</td>
-              <td>2 months ago</td>
-              <td>
-                <Status statusColor="red">Completed</Status>
-              </td>
-            </tr>
+            {sortedCycles.map((cycle) => {
+              return (
+                <tr key={cycle.id}>
+                  <td>{cycle.task}</td>
+                  <td>{cycle.minutesAmount} minutes</td>
+                  <td>
+                    {formatDistanceToNow(cycle.startDate, {
+                      addSuffix: true,
+                    })}
+                  </td>
+                  <td>
+                    {cycle.completed && (
+                      <Status statusColor="green">Concluded</Status>
+                    )}
+
+                    {cycle.interruptedDate && (
+                      <Status statusColor="red">Interrupted</Status>
+                    )}
+
+                    {!cycle.completed && !cycle.interruptedDate && (
+                      <Status statusColor="yellow">In Progress</Status>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </HistoryList>

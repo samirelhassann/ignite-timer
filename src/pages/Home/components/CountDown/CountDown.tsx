@@ -4,7 +4,7 @@ import { differenceInSeconds } from "date-fns";
 
 import { CountDownContainer, Separator } from "./CountDown.styles";
 
-import { CyclesContext } from "../../Home";
+import { CyclesContext } from "../../../../contexts/CyclesContexts";
 
 const CountDown = () => {
   const {

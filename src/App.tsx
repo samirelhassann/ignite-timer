@@ -7,13 +7,17 @@ import { ThemeProvider } from "styled-components";
 
 import Router from "./components/Router";
 
+import CyclesContextProvider from "./contexts/CyclesContexts";
+
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyle />
 
       <BrowserRouter>
-        <Router />
+        <CyclesContextProvider>
+          <Router />
+        </CyclesContextProvider>
       </BrowserRouter>
     </ThemeProvider>
   );
