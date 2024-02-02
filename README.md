@@ -1,6 +1,6 @@
 # Timer
 
-A development blog built in ReactJs + Typescript
+A task timer built in ReactJs + Typescript
 
 This is a project used for study purposes only • [Samir El Hassan](https://github.com/samirelhassann)
 
