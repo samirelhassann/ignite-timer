@@ -9,7 +9,7 @@ import { CyclesContext } from "../../contexts/CyclesContexts";
 const History = () => {
   const { cycles } = useContext(CyclesContext);
 
-  const sortedCycles = cycles
+  const sortedCycles = [...cycles]
     .sort((a, b) => {
       return new Date(a.startDate).getTime() - new Date(b.startDate).getTime();
     })

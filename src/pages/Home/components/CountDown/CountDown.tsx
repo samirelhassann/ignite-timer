@@ -26,6 +26,7 @@ const CountDown = () => {
   useEffect(() => {
     let interval: NodeJS.Timer;
 
+
     if (activeCycle)
       interval = setInterval(() => {
         const passedSeconds = differenceInSeconds(
@@ -36,14 +37,14 @@ const CountDown = () => {
         if (passedSeconds > totalSeconds) {
           markCurrenctCycleAsFineshed();
 
-          clearInterval(interval);
+          clearInterval(Number(interval));
         } else {
           setSecondsPassed(passedSeconds);
         }
       }, 1000);
 
     return () => {
-      clearInterval(interval);
+      clearInterval(Number(interval));
     };
   }, [activeCycle, markCurrenctCycleAsFineshed]);
 

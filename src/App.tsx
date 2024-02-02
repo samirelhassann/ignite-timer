@@ -10,11 +10,15 @@ import Router from "./components/Router";
 import CyclesContextProvider from "./contexts/CyclesContexts";
 
 function App() {
+  const base = import.meta.env.VITE_BASE || "/";
+
+  console.log("• [LOG] - base", base);
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyle />
 
-      <BrowserRouter>
+      <BrowserRouter basename={base}>
         <CyclesContextProvider>
           <Router />
         </CyclesContextProvider>
